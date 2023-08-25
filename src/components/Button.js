@@ -1,5 +1,10 @@
-export const Button =()=>{
+export const Button =({onClick, images})=>{
+if (images!==[]) {
     return(
-        <button type="button">Load more</button>
+   
+        <button type="button" onClick={onClick}>Load more</button>
+    
     )
+} 
+ 
 }
