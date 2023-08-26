@@ -1,6 +1,6 @@
 export const Modal =()=>{
-    <div className="overlay">
-  <div className="modal">
+    <div className="Overlay">
+  <div className="Modal">
     <img src="" alt="" />
   </div>
 </div>

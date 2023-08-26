@@ -1,6 +1,7 @@
 export const ImageGalleryItem =({image})=>
-{return(
-<li >
-  <img src={image.webformatURL} alt={image.tags} />
+{
+  return(
+<li className="ImageGalleryItem" >
+  <img src={image.webformatURL} alt={image.tags} className="ImageGalleryItem-image" />
 </li>
 )}

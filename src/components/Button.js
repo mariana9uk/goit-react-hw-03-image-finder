@@ -1,8 +1,8 @@
 export const Button =({onClick, images})=>{
-if (images!==[]) {
+if (images.length!==0) {
     return(
    
-        <button type="button" onClick={onClick}>Load more</button>
+        <button type="button" className ="Button" onClick={onClick}>Load more</button>
     
     )
 } 

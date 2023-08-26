@@ -2,19 +2,20 @@
 export const Searchbar = ({onSubmit})=>{
 
     return(
-        <header className="searchbar">
-        <form className="form" onSubmit ={ (evt)=>{
+<div className="Searchbar">
+        <header >
+        <form className="SearchForm" onSubmit ={ (evt)=>{
         evt.preventDefault();
         onSubmit(evt.target.elements.query.value);
    
         evt.target.reset();
     }}>
-          <button type="submit" className="button" >
-            <span className="button-label">Search</span>
+          <button type="submit" className="SearchForm-button" >
+            <span className="SearchForm-button-label">Search</span>
           </button>
-          <input
+          <input className="SearchForm-input"
           name="query"
-            className="input"
+            
             type="text"
             autoComplete="off"
             autoFocus
@@ -22,6 +23,6 @@ export const Searchbar = ({onSubmit})=>{
           />
         </form>
       </header>
-      
+      </div>
     )
 }
