@@ -1,6 +1,7 @@
 import { Grid } from "react-loader-spinner";
 export const Loader =()=>{
 return(
+  <div className="Loader">
 <Grid
   height="80"
   width="80"
@@ -10,4 +11,6 @@ return(
   wrapperStyle={{}}
   wrapperClass=""
   visible={true}
-/>)}
+ 
+ 
+/></div>)}

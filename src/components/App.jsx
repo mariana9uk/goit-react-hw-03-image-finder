@@ -4,6 +4,10 @@ import { Component } from 'react';
 import { Button } from './Button';
 import { FetchImages } from './api';
 import { Loader } from './Loader';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ReactModal from 'react-modal';
+import { Modal } from './Modal';
 
 export class App extends Component {
   state = {
@@ -11,6 +15,7 @@ export class App extends Component {
     images: [],
     page: 1,
     loading: false,
+    showModal: false,
   };
 
   changeQuery = newQuery => {
@@ -19,29 +24,42 @@ export class App extends Component {
   async componentDidUpdate(prevProps, prevState) {
     if (
       prevState.query !== this.state.query ||
-      prevState.page !== this.state.page 
+      prevState.page !== this.state.page
     ) {
-      this.setState({loading:true})
+      this.setState({ loading: true });
       const fetchedImages = await FetchImages(
         this.state.query,
         this.state.page
       );
-         this.setState({ images: fetchedImages.hits,
-      loading: false });
+      this.setState({ images: fetchedImages.hits, loading: false });
     }
   }
   handleLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
+  notify = () =>
+    toast.warn('Please, type something!', {
+      position: toast.POSITION.TOP_LEFT,
+      autoClose: 2000,
+    });
+    handleOpenModal () {
+      this.setState({ showModal: true });
+    }
+    
+    handleCloseModal () {
+      this.setState({ showModal: false });
+    }
   render() {
     return (
       <div className="App">
-        <Searchbar onSubmit={this.changeQuery} />
-
-        {this.state.loading ? ( <Loader />) :
-          (  <ImageGallery images={this.state.images} />)
-        }
-    
+        <Searchbar onSubmit={this.changeQuery} Error={this.notify} />
+        <ToastContainer />
+        {this.state.loading ? (
+          <Loader />
+        ) : (
+          <ImageGallery images={this.state.images} openModal={this.handleOpenModal} />
+        )}
+<Modal isOpen={this.state.showModal}/>
         <Button images={this.state.images} onClick={this.handleLoadMore} />
       </div>
     );

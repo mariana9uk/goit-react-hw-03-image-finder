@@ -5,7 +5,7 @@ const PER_PAGE = 12;
 const API_KEY="7728721-8f567dd07946de7960dce4801"
 
 export const FetchImages = async(query, page)=>{
-    console.log(query)
+ 
     const currentPage=page
     const searchQuery = query.slice(query.indexOf('/')+1, query.length)
     console.log(searchQuery)

@@ -1,17 +1,25 @@
+import {AiOutlineSearch} from "react-icons/ai"
 
-export const Searchbar = ({onSubmit})=>{
 
+export const Searchbar = ({onSubmit, Error})=>{
+ 
     return(
 <div className="Searchbar">
         <header >
         <form className="SearchForm" onSubmit ={ (evt)=>{
         evt.preventDefault();
-        onSubmit(evt.target.elements.query.value);
+        if (evt.target.elements.query.value==="") {
+       
+      Error()
+        } else {
+          onSubmit(evt.target.elements.query.value);
    
-        evt.target.reset();
+          evt.target.reset();
+        }
+    
     }}>
           <button type="submit" className="SearchForm-button" >
-            <span className="SearchForm-button-label">Search</span>
+            <span className="SearchForm-button-label"><AiOutlineSearch /></span>
           </button>
           <input className="SearchForm-input"
           name="query"
