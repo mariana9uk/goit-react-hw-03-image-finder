@@ -6,7 +6,7 @@ import { FetchImages } from './api';
 import { Loader } from './Loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ReactModal from 'react-modal';
+
 import { Modal } from './Modal';
 
 export class App extends Component {
@@ -27,12 +27,20 @@ export class App extends Component {
       prevState.page !== this.state.page
     ) {
       this.setState({ loading: true });
-      const fetchedImages = await FetchImages(
+      try {const fetchedImages = await FetchImages(
         this.state.query,
         this.state.page
       );
       this.setState({ images: fetchedImages.hits, loading: false });
     }
+        catch (error) {
+          console.log(error)
+        toast.error('Error', {
+          position: toast.POSITION.TOP_LEFT,
+          autoClose: 2000,
+        })}
+      }
+      
   }
   handleLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
@@ -59,7 +67,7 @@ export class App extends Component {
         ) : (
           <ImageGallery images={this.state.images} openModal={this.handleOpenModal} />
         )}
-<Modal isOpen={this.state.showModal}/>
+{/* <Modal isOpen={this.state.showModal}/> */}
         <Button images={this.state.images} onClick={this.handleLoadMore} />
       </div>
     );
