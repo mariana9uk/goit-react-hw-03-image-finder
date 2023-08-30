@@ -8,8 +8,7 @@ export const FetchImages = async(query, page)=>{
  
     const currentPage=page
     const searchQuery = query.slice(query.indexOf('/')+1, query.length)
-    console.log(searchQuery)
-    console.log(currentPage)
+  
     const responce = await axios.get(`${BASE_URL}?q=${searchQuery}&page=${currentPage}&key=${API_KEY}&per_page=${PER_PAGE}`)
     return responce.data
 }

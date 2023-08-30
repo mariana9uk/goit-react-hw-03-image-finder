@@ -7,7 +7,7 @@ import { Loader } from './Loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Modal } from './Modal';
+
 
 export class App extends Component {
   state = {
@@ -15,7 +15,7 @@ export class App extends Component {
     images: [],
     page: 1,
     loading: false,
-    showModal: false,
+   
   };
 
   changeQuery = newQuery => {
@@ -50,13 +50,7 @@ export class App extends Component {
       position: toast.POSITION.TOP_LEFT,
       autoClose: 2000,
     });
-    handleOpenModal () {
-      this.setState({ showModal: true });
-    }
-    
-    handleCloseModal () {
-      this.setState({ showModal: false });
-    }
+ 
   render() {
     return (
       <div className="App">
@@ -65,9 +59,8 @@ export class App extends Component {
         {this.state.loading ? (
           <Loader />
         ) : (
-          <ImageGallery images={this.state.images} openModal={this.handleOpenModal} />
+          <ImageGallery images={this.state.images} />
         )}
-{/* <Modal isOpen={this.state.showModal}/> */}
         <Button images={this.state.images} onClick={this.handleLoadMore} />
       </div>
     );
