@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
-Modal.setAppElement('#root');
+import { Modal } from './modal';
+
+// import Modal from 'react-modal';
+// Modal.setAppElement('#root');
 export class ImageGalleryItem extends Component {
   state = {
     showModal: false,
@@ -27,18 +29,9 @@ export class ImageGalleryItem extends Component {
             onClick={this.handleOpenModal}
           />
         </li>
-        <Modal
-          onRequestClose={this.handleCloseModal}
-          isOpen={showModal}
-          image={image}
-        >
-          <div className="Overlay" onClick={this.handleCloseModal}>
-            <div className="Modal">
-              <img src={image.largeImageURL} alt={image.tags} />
-            </div>
+        <Modal onRequestClose={this.handleCloseModal}
+    isOpen={showModal} image={image} />
           </div>
-        </Modal>
-      </div>
     );
   }
 }
