@@ -31,7 +31,7 @@ export class App extends Component {
         this.state.query,
         this.state.page
       );
-      this.setState({ images: fetchedImages.hits, loading: false });
+      this.setState(prevState => ({ images: [...prevState.images, ...fetchedImages.hits], loading: false }));
     }
         catch (error) {
           console.log(error)
@@ -43,7 +43,9 @@ export class App extends Component {
       
   }
   handleLoadMore = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
+
+    this.setState(prevState => ({ images: [...prevState.images, ...this.state.images], page: prevState.page + 1 
+    }));
   };
   notify = () =>
     toast.warn('Please, type something!', {

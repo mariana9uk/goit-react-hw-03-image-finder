@@ -21,7 +21,7 @@ export class ImageGalleryItem extends Component {
     const { showModal } = this.state;
     return (
       <div>
-        <li className="ImageGalleryItem">
+        <li className="ImageGalleryItem" >
           <img
             src={image.webformatURL}
             alt={image.tags}
