@@ -4,10 +4,7 @@ export const Button = ({ onClick, images }) => {
       <button
         type="button"
         className="Button"
-        onClick={evt => {
-          evt.preventDefault();
-          onClick();
-        }}
+        onClick={onClick}
       >
         Load more
       </button>
