@@ -7,19 +7,18 @@ import { Loader } from './Loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 export class App extends Component {
   state = {
     query: '',
     images: [],
     page: 1,
     loading: false,
-   
   };
 
   changeQuery = newQuery => {
-    this.setState({ query: `${Date.now()}/${newQuery}`, images: [], page: 1 });
+    this.setState({ query: `${Date.now()}/${newQuery}`,
+    images: [],
+    page: 1 });
   };
   async componentDidUpdate(prevProps, prevState) {
     if (
@@ -27,25 +26,28 @@ export class App extends Component {
       prevState.page !== this.state.page
     ) {
       this.setState({ loading: true });
-      try {const fetchedImages = await FetchImages(
-        this.state.query,
-        this.state.page
-      );
-      this.setState(prevState => ({ images: [...prevState.images, ...fetchedImages.hits], loading: false,
-     }));
-    }
-        catch (error) {
-          console.log(error)
+      try {
+        const fetchedImages = await FetchImages(
+          this.state.query,
+          this.state.page
+        );
+        this.setState(prevState => ({
+          images: [...prevState.images, ...fetchedImages.hits],
+          loading: false,
+        }));
+      } catch (error) {
+        console.log(error);
         toast.error('Error', {
           position: toast.POSITION.TOP_LEFT,
           autoClose: 2000,
-        })}
+        });
       }
-      
+    }
   }
   handleLoadMore = () => {
-
-    this.setState(prevState => ({ images: [...prevState.images, ...this.state.images], page: prevState.page + 1,
+    this.setState(prevState => ({
+      images: [...prevState.images, ...this.state.images],
+      page: prevState.page + 1,
     }));
   };
   notify = () =>
@@ -53,7 +55,7 @@ export class App extends Component {
       position: toast.POSITION.TOP_LEFT,
       autoClose: 2000,
     });
- 
+
   render() {
     return (
       <div className="App">

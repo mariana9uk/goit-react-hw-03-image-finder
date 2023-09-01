@@ -13,15 +13,15 @@ export class ImageGalleryItem extends Component {
       showModal: true,
     });
   };
-  handleCloseModal=()=> {
+  handleCloseModal = () => {
     this.setState({ showModal: false });
-  }
+  };
   render() {
     const { image } = this.props;
     const { showModal } = this.state;
     return (
       <div>
-        <li className="ImageGalleryItem" >
+        <li className="ImageGalleryItem">
           <img
             src={image.webformatURL}
             alt={image.tags}
@@ -29,9 +29,12 @@ export class ImageGalleryItem extends Component {
             onClick={this.handleOpenModal}
           />
         </li>
-        <Modal onRequestClose={this.handleCloseModal}
-    isOpen={showModal} image={image} />
-          </div>
+        <Modal
+          onRequestClose={this.handleCloseModal}
+          isOpen={showModal}
+          image={image}
+        />
+      </div>
     );
   }
 }
