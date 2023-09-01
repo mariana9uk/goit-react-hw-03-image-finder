@@ -34,6 +34,8 @@ export class App extends Component {
         this.setState(prevState => ({
           images: [...prevState.images, ...fetchedImages.hits],
           loading: false,
+          page: this.state.page,
+       
         }));
       } catch (error) {
         console.log(error);
@@ -46,8 +48,8 @@ export class App extends Component {
   }
   handleLoadMore = () => {
     this.setState(prevState => ({
-      images: [...prevState.images, ...this.state.images],
-      page: prevState.page + 1,
+         page: prevState.page + 1,
+       
     }));
   };
   notify = () =>
@@ -61,13 +63,8 @@ export class App extends Component {
       <div className="App">
         <Searchbar onSubmit={this.changeQuery} Error={this.notify} />
         <ToastContainer />
-        {this.state.loading ? (
-          <Loader />
-        ) : (
-          <ImageGallery images={this.state.images} />
-        )}
+              {this.state.images.length > 0 ? <ImageGallery images={this.state.images} />:null }
+              {this.state.loading &&  <Loader />}
         <Button images={this.state.images} onClick={this.handleLoadMore} />
       </div>
-    );
-  }
-}
+    )}}
